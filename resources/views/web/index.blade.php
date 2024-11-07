@@ -22,6 +22,12 @@
         <div class="col-12">
           <p class="samuraimart-product-label mt-2">
             {{ $recommend_product->name }}<br>
+        
+            @if ($recommend_product->reviews()->exists())
+            <span class="samuraimart-star-rating" data-rate="{{ round($recommend_product->reviews->avg('score')*2)/2}}"></span>
+            {{ round($recommend_product->reviews->avg('score'),1) }}<br>
+            @endif
+
             <label>¥{{ $recommend_product->price }}</label>
           </p>
         </div>
@@ -48,6 +54,12 @@
             <div class="col-12">
               <p class="samuraimart-product-label mt-2">
                 {{ $recently_product->name }}<br>
+
+                @if ($recently_product->reviews()->exists())
+                 <span class="samuraimart-star-rating" data-rate="{{ round($recently_product->reviews->avg('score')*2)/2}}"></span>
+                 {{ round($recently_product->reviews->avg('score'),1) }}<br>
+                @endif
+
                 <label>¥{{ $recently_product->price }}</label>
               </p>
             </div>
